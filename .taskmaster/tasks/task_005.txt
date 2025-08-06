@@ -1,0 +1,11 @@
+# Task ID: 5
+# Title: Develop Basic Developer Dashboard Frontend
+# Status: pending
+# Dependencies: 1
+# Priority: medium
+# Description: Build the initial version of the web-based developer dashboard using React and Tailwind CSS. The dashboard will allow developers to configure MCP server connections and view discovered tools.
+# Details:
+Key UI components: Login page, a form to add/edit MCP server endpoints and credentials, and a table/list view to display tools discovered from a connected server.
+
+# Test Strategy:
+Component testing with a library like Jest/React Testing Library. Manual end-to-end testing of the user flow for adding a server and viewing its tools.

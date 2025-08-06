@@ -1,0 +1,63 @@
+# Task ID: 4
+# Title: Implement Core Translation Engine
+# Status: pending
+# Dependencies: 2, 3
+# Priority: high
+# Description: Create the initial version of the Translation Engine to map discovered MCP tool schemas to A2A task schemas and translate A2A task requests into MCP tool invocations.
+# Details:
+The engine will handle data format conversions between the two protocols. For the MVP, it will focus on synchronous, short-running tasks.
+
+# Test Strategy:
+Unit test the mapping logic with various MCP tool schemas. End-to-end tests will verify that a translated A2A task correctly invokes the corresponding MCP tool.
+
+# Subtasks:
+## 1. 스키마 매핑 전략 및 데이터 구조 설계 [pending]
+### Dependencies: None
+### Description: MCP 도구 스키마를 A2A 작업 스키마로 매핑하기 위한 내부 데이터 구조와 전략을 설계합니다.
+### Details:
+1. MCP 도구 스키마와 A2A 작업 스키마의 구조를 분석하여 공통점과 차이점을 식별합니다.
+2. 두 프로토콜 간의 데이터 타입, 매개변수, 응답 형식을 매핑하는 전략을 정의합니다.
+3. 매핑 정보를 저장하고 관리하기 위한 내부 데이터 구조를 설계합니다.
+4. 도구/작업 이름, 설명, 매개변수 이름 등의 메타데이터 변환 규칙을 정의합니다.
+5. 스키마 매핑을 위한 구성 파일 형식을 설계하여 사용자 정의 매핑을 지원합니다.
+
+## 2. 정방향 변환 로직 구현 (MCP → A2A) [pending]
+### Dependencies: None
+### Description: 발견된 MCP 도구 스키마를 유효한 A2A 작업 스키마로 변환하는 정방향 변환 로직을 구현합니다.
+### Details:
+1. MCP 도구 스키마를 파싱하고 분석하는 로직을 구현합니다.
+2. MCP 도구 메타데이터(이름, 설명, 카테고리 등)를 A2A 작업 메타데이터로 변환합니다.
+3. MCP 매개변수 스키마를 A2A 입력 스키마로 변환하는 로직을 개발합니다.
+4. MCP 응답 스키마를 A2A 출력 스키마로 변환하는 로직을 개발합니다.
+5. 변환된 A2A 작업 스키마가 A2A 프로토콜 사양을 준수하는지 검증하는 기능을 구현합니다.
+
+## 3. 역방향 변환 로직 구현 (A2A → MCP) [pending]
+### Dependencies: None
+### Description: 수신된 A2A 작업 요청을 유효한 MCP 도구 호출 요청으로 변환하는 역방향 변환 로직을 구현합니다.
+### Details:
+1. A2A 작업 요청을 파싱하고 유효성을 검사하는 로직을 구현합니다.
+2. A2A 작업 ID를 해당하는 MCP 도구 식별자로 매핑합니다.
+3. A2A 입력 데이터를 MCP 매개변수로 변환하는 로직을 개발합니다.
+4. MCP 도구 호출 요청 형식에 맞게 데이터를 구성합니다.
+5. 변환 과정에서 발생할 수 있는 오류를 처리하고 적절한 오류 응답을 생성하는 로직을 구현합니다.
+
+## 4. 데이터 타입 변환기 라이브러리 개발 [pending]
+### Dependencies: None
+### Description: 두 프로토콜 간의 차이를 처리하기 위한 데이터 타입 변환기 라이브러리를 생성합니다.
+### Details:
+1. MCP와 A2A에서 사용하는 모든 데이터 타입을 식별하고 매핑 관계를 정의합니다.
+2. 기본 데이터 타입(문자열, 숫자, 불리언 등) 간의 변환 함수를 구현합니다.
+3. 복합 데이터 타입(객체, 배열, 중첩 구조 등)을 변환하는 함수를 개발합니다.
+4. 특수 데이터 타입(날짜/시간, 바이너리, 스트림 등)에 대한 변환 로직을 구현합니다.
+5. 변환 중 발생할 수 있는 데이터 손실이나 불일치를 처리하는 전략을 개발합니다.
+
+## 5. 변환 정확성 검증을 위한 테스트 개발 [pending]
+### Dependencies: None
+### Description: 모의 MCP 및 A2A 스키마를 사용하여 변환 정확성을 검증하는 종합적인 단위 테스트 모음을 개발합니다.
+### Details:
+1. 다양한 복잡성과 구조를 가진 모의 MCP 도구 스키마 세트를 생성합니다.
+2. 해당 A2A 작업 스키마의 예상 결과를 정의합니다.
+3. 정방향 변환(MCP → A2A)에 대한 단위 테스트를 개발하여 예상 결과와 일치하는지 확인합니다.
+4. 역방향 변환(A2A → MCP)에 대한 단위 테스트를 개발합니다.
+5. 에지 케이스, 오류 조건, 비표준 입력에 대한 테스트를 포함하여 변환 엔진의 견고성을 확인합니다.
+

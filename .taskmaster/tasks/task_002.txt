@@ -1,0 +1,11 @@
+# Task ID: 2
+# Title: Develop Core MCP Client Module (HTTP)
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Implement the MCP Client Module to connect to external MCP servers via JSON-RPC over HTTP. This module will be responsible for discovering tools and executing requests as per the MCP specification.
+# Details:
+The module should handle HTTP requests, parse MCP tool schemas, and manage connections. Focus on the HTTP transport protocol for the MVP.
+
+# Test Strategy:
+Unit test connection logic and schema parsing. Integration test against a reference MCP server to confirm successful tool discovery and invocation.

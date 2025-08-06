@@ -1,0 +1,53 @@
+# Task ID: 9
+# Title: Enhance A2A Server for Long-Running Tasks (SSE)
+# Status: pending
+# Dependencies: 3
+# Priority: medium
+# Description: Upgrade the A2A Server Module to support the full A2A task lifecycle, including handling long-running tasks using Server-Sent Events (SSE) for status updates and push notifications.
+# Details:
+This involves implementing A2A's SSE-based communication model for asynchronous task updates, allowing clients to track progress on long-running jobs.
+
+# Test Strategy:
+Use an A2A client simulator to initiate a long-running task and subscribe to the SSE endpoint. Verify that status updates are received correctly throughout the task's lifecycle.
+
+# Subtasks:
+## 1. 비동기 작업 상태 관리 시스템 구현 [pending]
+### Dependencies: None
+### Description: 비동기 작업의 상태를 추적하기 위한 데이터베이스 스키마와 관리 시스템을 설계하고 구현합니다.
+### Details:
+1. 작업 상태를 저장하기 위한 데이터베이스 테이블을 설계합니다(작업 ID, 상태, 생성 시간, 업데이트 시간, 결과 등).
+2. 작업 상태 변경을 관리하는 서비스 레이어를 구현합니다.
+3. 작업 상태 조회 및 업데이트를 위한 API를 개발합니다.
+4. 장기 실행 작업의 상태를 주기적으로 업데이트하는 메커니즘을 구현합니다.
+5. 작업 타임아웃 및 실패 처리 로직을 개발합니다.
+
+## 2. A2A 호환 SSE 엔드포인트 구현 [pending]
+### Dependencies: None
+### Description: A2A 클라이언트가 특정 작업의 상태 업데이트를 구독할 수 있는 SSE 엔드포인트를 구현합니다.
+### Details:
+1. 클라이언트 연결을 관리하는 SSE 서버 구현을 개발합니다.
+2. 작업 ID별로 클라이언트 연결을 추적하는 메커니즘을 구현합니다.
+3. A2A 프로토콜에 따라 SSE 이벤트 형식을 구현합니다.
+4. 클라이언트 연결이 끊어졌을 때 자원을 정리하는 로직을 개발합니다.
+5. 여러 클라이언트가 동일한 작업을 구독할 수 있도록 지원합니다.
+
+## 3. 비동기 작업 실행 엔드포인트 수정 [pending]
+### Dependencies: None
+### Description: 작업 실행 엔드포인트를 수정하여 작업 ID를 즉시 반환하고 백그라운드에서 작업을 시작하도록 합니다.
+### Details:
+1. 기존 동기식 작업 실행 엔드포인트를 비동기 방식으로 수정합니다.
+2. 작업 요청을 받으면 데이터베이스에 초기 작업 상태를 기록하고 작업 ID를 생성합니다.
+3. 작업 ID를 즉시 클라이언트에 반환하는 로직을 구현합니다.
+4. 백그라운드에서 작업을 실행하는 워커 시스템을 개발합니다.
+5. 작업 완료 또는 실패 시 데이터베이스의 작업 상태를 업데이트하는 로직을 구현합니다.
+
+## 4. 작업 상태 업데이트 푸시 메커니즘 구현 [pending]
+### Dependencies: None
+### Description: 작업 상태 업데이트를 해당 작업을 구독하는 SSE 클라이언트에게 푸시하는 서버 측 로직을 구현합니다.
+### Details:
+1. 작업 상태 변경 이벤트를 감지하는 메커니즘을 구현합니다.
+2. 작업 ID와 연결된 모든 SSE 클라이언트를 조회하는 로직을 개발합니다.
+3. A2A 프로토콜에 맞는 상태 업데이트 이벤트 형식을 구현합니다.
+4. 상태 업데이트를 모든 구독 클라이언트에게 전송하는 로직을 개발합니다.
+5. 전송 실패 및 재시도 메커니즘을 구현합니다.
+

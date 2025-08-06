@@ -1,0 +1,63 @@
+# Task ID: 10
+# Title: Implement Advanced Authentication (OAuth2, mTLS)
+# Status: pending
+# Dependencies: 6
+# Priority: high
+# Description: Integrate enterprise-grade authentication mechanisms, specifically OAuth2 and mTLS, into the Authentication Service for securing both MCP server connections and A2A client interactions.
+# Details:
+This will provide more secure and flexible authentication options for enterprise users. It requires integrating with OAuth2 providers and handling mTLS certificates.
+
+# Test Strategy:
+Configure test OAuth2 providers and generate mTLS certificates. Integration test the full authentication flows for both MCP and A2A sides of the service.
+
+# Subtasks:
+## 1. OAuth2/OIDC 인증 흐름 구현 [pending]
+### Dependencies: None
+### Description: 개발자 대시보드에서 사용자 인증을 위한 OAuth2/OIDC 흐름을 구현합니다.
+### Details:
+1. OAuth2 제공자(예: Google, GitHub, Auth0)를 선택하고 애플리케이션을 등록합니다.
+2. 클라이언트 ID와 시크릿을 안전하게 저장하고 관리합니다.
+3. 인증 요청, 콜백 처리, 토큰 교환을 처리하는 백엔드 로직을 구현합니다.
+4. 프론트엔드에서 OAuth2 로그인 흐름을 시작하는 UI 컴포넌트를 개발합니다.
+5. 세션 관리 및 토큰 갱신 메커니즘을 구현합니다.
+
+## 2. OAuth2 베어러 토큰 검증 미들웨어 구현 [pending]
+### Dependencies: None
+### Description: 관리 API를 보호하기 위한 OAuth2 베어러 토큰 검증 미들웨어를 구현합니다.
+### Details:
+1. HTTP 요청에서 Authorization 헤더를 추출하는 미들웨어를 개발합니다.
+2. OAuth2 토큰 검증 로직을 구현하여 토큰의 서명, 만료 시간, 발급자를 확인합니다.
+3. 토큰에서 사용자 정보와 권한을 추출하여 요청 컨텍스트에 추가합니다.
+4. 토큰 캐싱 메커니즘을 구현하여 반복적인 검증 요청을 최소화합니다.
+5. 토큰 검증 실패 시 적절한 오류 응답을 반환하는 로직을 구현합니다.
+
+## 3. mTLS 인프라 구성 [pending]
+### Dependencies: None
+### Description: mTLS 핸드셰이크를 처리하고 클라이언트 인증서 정보를 백엔드 서비스에 전달하도록 클라우드 인프라를 구성합니다.
+### Details:
+1. 인그레스 또는 로드 밸런서에서 mTLS를 활성화합니다.
+2. 서버 인증서와 인증 기관(CA)을 생성하고 구성합니다.
+3. 클라이언트 인증서 검증을 위한 신뢰할 수 있는 CA를 구성합니다.
+4. 클라이언트 인증서 정보를 HTTP 헤더로 변환하여 백엔드 서비스에 전달하도록 설정합니다.
+5. 인증서 갱신 및 관리 프로세스를 구현합니다.
+
+## 4. 클라이언트 인증서 검증 로직 개발 [pending]
+### Dependencies: None
+### Description: A2A 및 MCP 통신을 보호하기 위해 클라이언트 인증서를 검증하는 인증 서비스 로직을 개발합니다.
+### Details:
+1. 인그레스/로드 밸런서에서 전달된 클라이언트 인증서 정보를 추출하는 로직을 구현합니다.
+2. 인증서의 유효성(서명, 만료 여부, 해지 상태)을 검증하는 기능을 개발합니다.
+3. 인증서에서 클라이언트 식별자를 추출하고 데이터베이스의 등록된 클라이언트와 매핑합니다.
+4. 인증서 기반 액세스 제어 정책을 구현하여 특정 MCP 도구 및 A2A 작업에 대한 접근을 제한합니다.
+5. 인증서 검증 결과를 감사 로그에 기록합니다.
+
+## 5. 클라이언트 측 인증 지원 업데이트 [pending]
+### Dependencies: None
+### Description: 클라이언트 측 구성 요소(SDK, MCP 클라이언트)가 mTLS 인증서와 OAuth2 토큰을 제공할 수 있도록 업데이트합니다.
+### Details:
+1. SDK와 MCP 클라이언트에 mTLS 인증서 구성 옵션을 추가합니다.
+2. 클라이언트 인증서와 개인 키를 안전하게 로드하고 사용하는 로직을 구현합니다.
+3. OAuth2 토큰을 획득하고 요청 헤더에 포함하는 기능을 개발합니다.
+4. 인증서와 토큰의 자동 갱신 메커니즘을 구현합니다.
+5. 클라이언트 측 인증 오류를 처리하고 적절한 오류 메시지를 제공하는 로직을 추가합니다.
+

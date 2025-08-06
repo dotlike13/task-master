@@ -1,0 +1,63 @@
+# Task ID: 13
+# Title: Develop Python and TypeScript SDKs
+# Status: pending
+# Dependencies: 7
+# Priority: medium
+# Description: Create, document, and publish Python and TypeScript SDKs to simplify programmatic interaction with the conversion service's APIs for configuration and management.
+# Details:
+The SDKs should provide intuitive methods for managing MCP server connections and retrieving agent information, abstracting away the underlying REST API calls.
+
+# Test Strategy:
+Unit test the SDK methods. Write example applications using the SDKs to perform common tasks and verify they work against the live service.
+
+# Subtasks:
+## 1. SDK API 표면 설계 [pending]
+### Dependencies: None
+### Description: SDK에 대한 공통 API 표면을 설계하고 기본 인터페이스를 정의합니다.
+### Details:
+1. SDK가 지원해야 하는 핵심 기능을 식별합니다(서버 연결 구성, 도구 검색, 작업 실행 등).
+2. 각 언어(Python, TypeScript)에 적합한 API 디자인 패턴을 연구합니다.
+3. SDK 클래스 및 메서드의 구조를 설계합니다.
+4. 공통 데이터 모델 및 인터페이스를 정의합니다.
+5. 오류 처리 전략과 예외 계층 구조를 설계합니다.
+
+## 2. Python SDK 구현 및 배포 [pending]
+### Dependencies: None
+### Description: Python SDK를 구현하고 PyPI에 배포합니다.
+### Details:
+1. Python SDK 프로젝트 구조를 설정합니다(setup.py, 패키지 구조 등).
+2. REST API와 통신하기 위한 HTTP 클라이언트 래퍼를 구현합니다.
+3. 설계된 API 표면에 따라 클래스 및 메서드를 구현합니다.
+4. 단위 테스트 및 통합 테스트를 작성합니다.
+5. 패키지를 빌드하고 PyPI에 배포합니다.
+
+## 3. TypeScript SDK 구현 및 배포 [pending]
+### Dependencies: None
+### Description: TypeScript SDK를 구현하고 npm에 배포합니다.
+### Details:
+1. TypeScript SDK 프로젝트 구조를 설정합니다(tsconfig.json, package.json 등).
+2. REST API와 통신하기 위한 HTTP 클라이언트 래퍼를 구현합니다.
+3. 설계된 API 표면에 따라 클래스 및 메서드를 구현합니다.
+4. 단위 테스트 및 통합 테스트를 작성합니다.
+5. 패키지를 빌드하고 npm에 배포합니다.
+
+## 4. SDK 문서 및 예제 작성 [pending]
+### Dependencies: None
+### Description: 두 SDK에 대한 종합적인 문서와 코드 예제를 작성합니다.
+### Details:
+1. API 참조 문서를 생성합니다(docstring, JSDoc 등 사용).
+2. 시작 가이드와 설치 지침을 작성합니다.
+3. 일반적인 사용 사례에 대한 코드 예제를 개발합니다.
+4. 고급 기능에 대한 자세한 튜토리얼을 작성합니다.
+5. 문서 웹사이트를 설정하고 배포합니다(예: Read the Docs, GitHub Pages).
+
+## 5. SDK CI/CD 파이프라인 구축 [pending]
+### Dependencies: None
+### Description: SDK의 자동 테스트, 빌드, 배포를 위한 CI/CD 파이프라인을 구축합니다.
+### Details:
+1. GitHub Actions 또는 다른 CI/CD 도구를 사용하여 파이프라인을 설정합니다.
+2. 코드 변경 시 자동으로 테스트를 실행하는 워크플로우를 구성합니다.
+3. 릴리스 태그 생성 시 자동으로 패키지를 빌드하고 배포하는 워크플로우를 구성합니다.
+4. 문서 자동 생성 및 배포 파이프라인을 설정합니다.
+5. 버전 관리 및 릴리스 노트 생성 프로세스를 자동화합니다.
+

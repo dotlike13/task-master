@@ -1,0 +1,11 @@
+# Task ID: 6
+# Title: Implement Basic Authentication (API Keys)
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Implement an Authentication Service to secure the platform. The initial version will support API key-based authentication for developers using the service APIs and dashboard.
+# Details:
+This includes generating, storing, and validating API keys for programmatic access. The service should protect all management and A2A endpoints.
+
+# Test Strategy:
+Unit test API key generation and validation logic. Integration tests to ensure endpoints are protected and return 401/403 errors for invalid or missing keys.

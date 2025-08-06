@@ -1,0 +1,63 @@
+# Task ID: 8
+# Title: Extend MCP Client for SSE and STDIO Transports
+# Status: pending
+# Dependencies: 2
+# Priority: medium
+# Description: Enhance the MCP Client Module to support connecting to MCP servers using Server-Sent Events (SSE) and STDIO transport protocols, in addition to HTTP.
+# Details:
+This will allow the service to integrate with a wider range of MCP servers, especially those that handle long-running or streaming operations.
+
+# Test Strategy:
+Integration test against reference MCP servers that use SSE and STDIO transports. Verify that tool discovery and execution work correctly over these new protocols.
+
+# Subtasks:
+## 1. 전송 프로토콜을 위한 전략 패턴 구현 [pending]
+### Dependencies: None
+### Description: 다양한 전송 프로토콜을 지원하기 위해 전략 패턴을 사용하여 기존 MCP 클라이언트를 리팩토링합니다.
+### Details:
+1. 전송 프로토콜 구현을 위한 공통 인터페이스/추상 클래스를 설계합니다.
+2. 기존 HTTP 전송 구현을 새로운 인터페이스에 맞게 리팩토링합니다.
+3. 클라이언트 구성에서 전송 전략을 선택하는 메커니즘을 구현합니다.
+4. 전송 전략 팩토리를 구현하여 구성에 따라 적절한 전송 구현을 생성합니다.
+5. 기존 HTTP 기능이 리팩토링 후에도 정상적으로 작동하는지 확인하는 테스트를 작성합니다.
+
+## 2. SSE 전송 전략 구현 [pending]
+### Dependencies: None
+### Description: SSE(Server-Sent Events) 전송 전략을 구현하여 지속적인 연결과 이벤트 스트림을 처리합니다.
+### Details:
+1. SSE 연결을 설정하고 유지하는 로직을 구현합니다.
+2. 이벤트 스트림에서 메시지를 파싱하는 로직을 개발합니다.
+3. 연결 끊김 및 재연결 처리 메커니즘을 구현합니다.
+4. SSE를 통한 MCP 도구 검색 기능을 구현합니다.
+5. SSE를 통한 MCP 도구 호출 및 응답 처리 로직을 개발합니다.
+
+## 3. STDIO 전송 전략 구현 [pending]
+### Dependencies: None
+### Description: STDIO 전송 전략을 구현하여 자식 프로세스와의 표준 입출력 통신을 처리합니다.
+### Details:
+1. 자식 프로세스를 시작하고 관리하는 로직을 구현합니다.
+2. 표준 입력(stdin)을 통해 자식 프로세스에 명령을 보내는 기능을 개발합니다.
+3. 표준 출력(stdout)에서 응답을 읽고 파싱하는 로직을 구현합니다.
+4. 표준 오류(stderr)에서 오류 메시지를 처리하는 메커니즘을 개발합니다.
+5. 프로세스 종료 및 자원 정리를 관리하는 로직을 구현합니다.
+
+## 4. 전송 전략 선택 및 통합 로직 개발 [pending]
+### Dependencies: None
+### Description: 서버 구성에 따라 적절한 전송 프로토콜을 선택하고 사용하도록 코어 클라이언트 로직을 수정합니다.
+### Details:
+1. MCP 서버 구성 스키마를 확장하여 전송 프로토콜 유형 및 관련 설정을 포함합니다.
+2. 서버 구성을 기반으로 적절한 전송 전략을 선택하는 로직을 구현합니다.
+3. 각 전송 전략에 맞게 요청 및 응답 처리 흐름을 조정합니다.
+4. 프로토콜 간 일관된 오류 처리 메커니즘을 구현합니다.
+5. 런타임에 전송 전략을 전환하는 기능을 구현합니다(필요한 경우).
+
+## 5. SSE 및 STDIO 전송에 대한 통합 테스트 개발 [pending]
+### Dependencies: None
+### Description: SSE 및 STDIO 전송을 사용하는 참조 MCP 서버에 대한 통합 테스트를 개발합니다.
+### Details:
+1. 테스트를 위한 SSE 및 STDIO 기반 참조 MCP 서버를 식별하거나 구현합니다.
+2. 각 전송 프로토콜에 대한 테스트 사례를 설계합니다.
+3. SSE 전송을 사용한 도구 검색 및 실행 테스트를 구현합니다.
+4. STDIO 전송을 사용한 도구 검색 및 실행 테스트를 구현합니다.
+5. 오류 조건 및 재연결 시나리오에 대한 테스트를 개발합니다.
+
